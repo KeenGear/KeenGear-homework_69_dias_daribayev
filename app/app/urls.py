@@ -19,4 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('api/', include('calculator.urls')),
+    path('', include('webapp.urls')),
 ]
