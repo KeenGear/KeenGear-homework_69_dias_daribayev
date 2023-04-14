@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 @require_POST
 def add(request):
     if request.method == 'POST':
-        data = json.loads(request.body)
+        data = request.POST.dict()
         a = data.get('A')
         b = data.get('B')
         if a is None or b is None:
@@ -24,7 +24,7 @@ def add(request):
 @require_POST
 def subtract(request):
     try:
-        data = json.loads(request.body)
+        data = request.POST.dict()
         a = float(data['A'])
         b = float(data['B'])
         result = a - b
@@ -36,7 +36,7 @@ def subtract(request):
 @require_POST
 def multiply(request):
     try:
-        data = json.loads(request.body)
+        data = request.POST.dict()
         a = float(data['A'])
         b = float(data['B'])
         result = a * b
@@ -48,7 +48,7 @@ def multiply(request):
 @require_POST
 def divide(request):
     try:
-        data = json.loads(request.body)
+        data = request.POST.dict()
         a = float(data['A'])
         b = float(data['B'])
         if b == 0:
