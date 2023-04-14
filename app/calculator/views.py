@@ -25,3 +25,15 @@ def subtract(request):
         return JsonResponse({'answer': result})
     except (KeyError, ValueError):
         return JsonResponse({'error': 'Invalid input data'}, status=400)
+
+@csrf_exempt
+@require_POST
+def multiply(request):
+    try:
+        data = request.POST.dict()
+        a = float(data['A'])
+        b = float(data['B'])
+        result = a * b
+        return JsonResponse({'answer': result})
+    except (KeyError, ValueError):
+        return JsonResponse({'error': 'Invalid input data'}, status=400)
