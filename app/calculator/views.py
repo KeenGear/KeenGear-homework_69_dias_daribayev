@@ -37,3 +37,17 @@ def multiply(request):
         return JsonResponse({'answer': result})
     except (KeyError, ValueError):
         return JsonResponse({'error': 'Invalid input data'}, status=400)
+
+@csrf_exempt
+@require_POST
+def divide(request):
+    try:
+        data = request.POST.dict()
+        a = float(data['A'])
+        b = float(data['B'])
+        if b == 0:
+            return JsonResponse({'error': 'Division by zero!'}, status=400)
+        result = a / b
+        return JsonResponse({'answer': result})
+    except (KeyError, ValueError):
+        return JsonResponse({'error': 'Invalid input data'}, status=400)
